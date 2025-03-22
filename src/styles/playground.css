@@ -1,0 +1,99 @@
+/* Header */
+.game-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.game-title {
+  background: linear-gradient(45deg, #b03633, #903332);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 20px;
+  font-size: 4rem;
+}
+
+
+/* Game Nav Styles */
+.game-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  background-color: #f8f9fa;
+}
+
+.game-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.game-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.game-board p {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.game-controls button {
+  font-family: 'Black Remote', sans-serif;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: white;
+}
+
+#pause-btn {
+  border-radius: 5px;
+  background-color: #b03633;
+}
+
+#reset-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #903332;
+}
+
+/* Game Body */
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  align-items: center;
+}
+
+.game-card {
+  align-items: center;
+  padding: 3rem 0.5rem;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}  
