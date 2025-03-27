@@ -48,11 +48,10 @@
 }
 
 .back{
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-
 }
 
 
@@ -71,9 +70,8 @@
 
 
 .front{
-    
     font-size: large;
-    color:  rgb(124, 4, 54);;
+    color:  rgb(124, 4, 54);
     font-weight: bold;
 }
 
@@ -106,7 +104,6 @@
     filter: invert(1)   blur(.7px);
     mix-blend-mode: screen;
 }
-
 
 
 
