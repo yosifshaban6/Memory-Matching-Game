@@ -107,7 +107,7 @@ img{
 }
 
 .game-card-inner:hover  {
-  transform: rotateY(180deg);
+
   cursor: pointer;
 }
 
