@@ -1,3 +1,11 @@
+:root {
+  font-size: calc(0.5em + 1vw); /* 20px */ 
+  --main-font: 'Bagel Fat One', 'Black Remote', sans-serif;
+  --main-color: #b03633;
+  --secondary-color: #903332;
+  --main-pg-color: #f8f9fa;
+  --secondary-pg-color: #fff;
+}
 
 /* Override the browser default styles */
 * {
@@ -16,7 +24,7 @@ a {
 
 /* Global Style */
 body {
-  font-family: 'Black Remote', sans-serif;
-  background-color: #f8f9fa;
-  height: 100vh;
+  font-family: var(--main-font);
+  background-color: var(--main-pg-color);
 }
+
