@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="styles/mode.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
     <button onclick="showPopup()">start</button>
     <div id="popup">
-        <button id="popup-exit-button" onclick="hidePopup()">X</button>
-        <div id="difficulty-toggle">
-        </div>
-        <form id="difficulties-form" action="playground.html">
-        
-            <button type="submit" class="difficulty" id="easy-button">
-                <div class="front">Easy</div>
-                <div class="back"></div>
-            </button>
-            <button type="submit" class="difficulty" id="medium-button">
-                <div class="front">Medium</div>
-                <div class="back"></div>
-            </button>
-            <button type="submit" class="difficulty" id="hard-button">
-                <div class="front">Hard</div>
-                <div class="back"></div>
-            </button>
-        </form>
+      <button id="popup-exit-button" onclick="hidePopup()">X</button>
+      <div id="difficulty-toggle"></div>
+      <form id="difficulties-form" action="playground.html" method="GET">
+        <input type="hidden" name="difficulty" />
 
+        <button type="submit" class="difficulty" id="easy-button">
+          <div class="front">Easy</div>
+          <div class="back"></div>
+        </button>
+        <button type="submit" class="difficulty" id="medium-button">
+          <div class="front">Medium</div>
+          <div class="back"></div>
+        </button>
+        <button type="submit" class="difficulty" id="hard-button">
+          <div class="front">Hard</div>
+          <div class="back"></div>
+        </button>
+      </form>
     </div>
 
-<script src="scripts/script.js"></script>
-
-</body>
+    <script src="scripts/script.js"></script>
+  </body>
 </html>

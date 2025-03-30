@@ -5,6 +5,8 @@ const mediumButton =   document.getElementById("medium-button")
 const hardButton =   document.getElementById("hard-button")
 const difficultyToggle =   document.getElementById("difficulty-toggle")
 const difficultiesForm = document.getElementById("difficulties-form")
+const input = document.querySelector("[name=difficulty]")
+
 function showPopup() {
   popup.style.display = "flex";
 }
@@ -32,4 +34,10 @@ difficultiesForm.addEventListener("mouseleave",()=>{
   difficultyToggle.style.backgroundSize = "410%"
   difficultyToggle.style.transition = "background-size 0.3s ease";
 
+})
+
+
+difficultiesForm.addEventListener("submit",(e)=>{
+  input.value = e.submitter.id 
+  
 })

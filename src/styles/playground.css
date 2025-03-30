@@ -92,22 +92,48 @@
   border-radius: 0.3em;
   background-color: var(--secondary-pg-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s;
+  display: flex;
+  justify-content: center;
+}
+
+.game-card:hover {
+  cursor: pointer;
 }
 
 .small-card {
   width: 4.8em;
+  height: 4.8em;
 }
 
 .medium-card {
   width: 7em;
+  height: 7em;
 }
 
 .large-card {
   width: 10em;
+  height: 10em;
 }
 
-.game-card img {
+img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px;
+}
+
+.game-card-front,
+.game-card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  size-adjust: 100%;
+  width: 100%;
+}
+
+.game-card-back {
+  transform: rotateY(180deg);
 }
