@@ -108,15 +108,24 @@
   font-size: 0.6rem;
   width: 5em;
   height: 5em;
+  font-size: 0.6rem;
+  width: 5em;
+  height: 5em;
 }
 
 .medium-card {
   font-size: 0.7rem;
   width: 5.8em;
   height: 5.8em;
+  font-size: 0.7rem;
+  width: 5.8em;
+  height: 5.8em;
 }
 
 .large-card {
+  font-size: 1rem;
+  width: 6.5em;
+  height: 6.5em;
   font-size: 1rem;
   width: 6.5em;
   height: 6.5em;
@@ -138,6 +147,7 @@ img {
 }
 
 .game-card-back {
+  font-size: 2em;
   font-size: 2em;
   transform: rotateY(180deg);
   display: flex;
