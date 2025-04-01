@@ -105,18 +105,21 @@
 }
 
 .small-card {
-  width: 4.8em;
-  height: 4.8em;
+  font-size: 0.6rem;
+  width: 5em;
+  height: 5em;
 }
 
 .medium-card {
-  width: 7em;
-  height: 7em;
+  font-size: 0.7rem;
+  width: 5.8em;
+  height: 5.8em;
 }
 
 .large-card {
-  width: 10em;
-  height: 10em;
+  font-size: 1rem;
+  width: 6.5em;
+  height: 6.5em;
 }
 
 img {
@@ -135,6 +138,7 @@ img {
 }
 
 .game-card-back {
+  font-size: 2em;
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
