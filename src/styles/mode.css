@@ -1,111 +1,118 @@
-#popup{
-    display: none;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 50%; left: 50%; 
-    transform: translate(-50%, -50%); 
-    padding: 20px; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    border-radius: 20px;
-    background-color: rgb(124, 4, 54);
+header {
+  margin-bottom: 0.5em;
+  font-size: 2rem;
+  color: var(--secondary-color);
 }
 
-#popup-exit-button{
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    border: 0px;
-    background-color: transparent;
+#popup-container {
+  display: none;
+  background: transparent;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
 }
 
-#difficulties-form{
-    display: flex;
-    justify-content:space-around;
-
-
-
-
+#popup {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.5em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  background-color: white;
+  border-radius: 0.3em;
 }
 
-.difficulty{
-        position: relative;
-        margin: 10px;
-        width: 93px;
-        height: 93px;
-        border-radius: 31%;
-        border: none;
-        transition: transform .7s ease, color .35s ease;
-        transform-style: preserve-3d;
-        background-color: white;
+#popup-exit-button {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  border: 0px;
+  background-color: transparent;
+  color: var(--secondary-color);
 
+  font-weight: bold;
 }
 
-.difficulty:hover{
-    transform: rotateY(180deg);
-    cursor: pointer;
+#popup-exit-button:hover {
+  cursor: pointer;
 }
 
-.back{
-    transform: rotateY(-180deg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+#difficulties-form {
+  display: flex;
+  justify-content: space-around;
 }
 
-
-
-#easy-button .back{
-    background-image: url("../../public/images/star.ico");
+.difficulty {
+  position: relative;
+  margin: 10px;
+  border-radius: 0.3em;
+  border: none;
+  transition: transform 0.7s ease, color 0.35s ease;
+  transform-style: preserve-3d;
+  background-color: white;
+  font-size: 1rem;
+  height: 6em;
+  width: 6em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#medium-button .back{
-    background-image: url("../../public/images/star-2.ico");
+.difficulty p {
+  font-size: 1.5em;
+  color: var(--secondary-color);
+  font-family: var(--main-font);
+  margin: 0;
 }
 
-#hard-button .back{
-    background-image: url("../../public/images/star-3.ico");
+.difficulty p.back {
+  font-size: 2em;
 }
 
-
-.front{
-    font-size: large;
-    color:  rgb(124, 4, 54);
-    font-weight: bold;
+.difficulty:hover {
+  transform: rotateY(180deg);
+  cursor: pointer;
 }
 
-.front,.back{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    border-radius: 31%;
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
+.back {
+  transform: rotateY(-180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
-
-
-
-#difficulty-toggle{
-    background-image: url("../../public/images/difficulty-toggle.png");
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 410%;
-    width: 230px;
-    height: 230px;
-    filter: invert(1)   blur(.7px);
-    mix-blend-mode: screen;
+.front {
+  font-size: 30px;
+  color: var(--secondary-color);
+  font-family: var(--main-font);
 }
 
+.front,
+.back {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
 
-
-
-
+#difficulty-toggle {
+  background-image: url("../../public/images/difficulty-toggle.svg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 410%;
+  width: 230px;
+  height: 230px;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}

@@ -8,25 +8,28 @@
   </head>
   <body>
     <button onclick="showPopup()">start</button>
-    <div id="popup">
-      <button id="popup-exit-button" onclick="hidePopup()">X</button>
-      <div id="difficulty-toggle"></div>
-      <form id="difficulties-form" action="playground.html" method="GET">
-        <input type="hidden" name="difficulty" />
+    <div id="popup-container">
+      <div id="popup">
+        <header>Choose Difficulty</header>
+        <button id="popup-exit-button" onclick="hidePopup()">╳</button>
+        <form id="difficulties-form" action="playground.html" method="GET">
+          <input type="hidden" name="difficulty" />
 
-        <button type="submit" class="difficulty" id="easy-button">
-          <div class="front">Easy</div>
-          <div class="back"></div>
-        </button>
-        <button type="submit" class="difficulty" id="medium-button">
-          <div class="front">Medium</div>
-          <div class="back"></div>
-        </button>
-        <button type="submit" class="difficulty" id="hard-button">
-          <div class="front">Hard</div>
-          <div class="back"></div>
-        </button>
-      </form>
+          <button type="submit" class="difficulty" id="easy-button">
+            <p class="front">Easy</p>
+            <p class="back">🐤</p>
+          </button>
+          <button type="submit" class="difficulty" id="medium-button">
+            <p class="front">Medium</p>
+            <p></p>
+            <p class="back">🦉</p>
+          </button>
+          <button type="submit" class="difficulty" id="hard-button">
+            <p class="front">Hard</p>
+            <p class="back">🦅</p>
+          </button>
+        </form>
+      </div>
     </div>
 
     <script src="scripts/script.js"></script>
