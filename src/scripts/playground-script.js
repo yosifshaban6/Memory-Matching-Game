@@ -54,13 +54,6 @@ function isMatching(firstCard, secondCard) {
   return firstCard.id === secondCard.id;
 }
 
-//Remove the two cards
-function removeCards(...arrOfCards) {
-  for (let card of arrOfCards) {
-    card.style.visibility = "hidden";
-  }
-}
-
 function moveCounter() {
   var movesCount = parseInt(moves.innerText);
   moves.innerText = String(`${String(++movesCount).padStart(2, "0")}`);
@@ -86,14 +79,8 @@ function handleCardFlip(selectedCard) {
 
     // If the two cards match
     if (isMatching(firstFlipCard, secondFlipCard)) {
-      // Remove the two cards from the game
-      setTimeout(() => {
-        flipBack(firstFlipCard);
-        flipBack(secondFlipCard);
-        removeCards(firstFlipCard, secondFlipCard);
-        firstFlipCard = undefined;
-        secondFlipCard = undefined;
-      }, 1000);
+      firstFlipCard = undefined;
+      secondFlipCard = undefined;
     } else {
       moveCounter();
       // Wait 1 second before flipping both cards back
@@ -159,7 +146,9 @@ function startTimer() {
     var minutes = Math.floor(elapsedSeconds / 60);
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
-    gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+    gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
   }, 1000);
 }
 
@@ -174,8 +163,6 @@ function pauseTimer() {
     startTimer();
   }
 }
-
-
 
 function startGame() {
   startTimer();

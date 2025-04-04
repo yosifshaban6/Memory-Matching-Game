@@ -95,7 +95,7 @@
 
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.7s, visibility 0.215s;
+  transition: transform 0.7s;
   display: flex;
   justify-content: center;
 }
@@ -117,7 +117,7 @@
 }
 
 .large-card {
-  font-size: .7rem;
+  font-size: 0.7rem;
   width: 7em;
   height: 7em;
 }
