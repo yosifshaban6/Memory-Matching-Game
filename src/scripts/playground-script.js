@@ -147,7 +147,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
+      remainingSeconds,
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -203,8 +203,10 @@ function resetGame() {
   elapsedSeconds = 0;
   gameTimer.innerText = "00:00";
   moves.innerText = "00";
+  if (paused) {
+    pauseTimer();
+  }
 
-  pauseTimer();
   startGame();
 }
 
