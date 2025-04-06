@@ -10,8 +10,20 @@
     <button onclick="showPopup()">start</button>
     <div id="popup-container">
       <div id="popup">
-        <header>Choose Difficulty</header>
-        <button id="popup-exit-button" onclick="hidePopup()">╳</button>
+        <header>
+          <button id="popup-exit-button" onclick="hidePopup()">X</button>
+          <p>Choose Difficulty</p>
+        </header>
+        <main id="popup-content">
+          <p>Choose a difficulty level to start the game.</p>
+          <ul>
+            <li>
+              <p>Easy: 4x4 grid</p>
+            </li>
+            <li><p>Medium: 6x6 grid</p></li>
+            <li><p>Hard: 8x8 grid</p></li>
+          </ul>
+        </main>
         <form id="difficulties-form" action="playground.html" method="GET">
           <input type="hidden" name="difficulty" />
 
