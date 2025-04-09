@@ -3,6 +3,21 @@ const resetButton = document.getElementById("reset-btn");
 const pauseButton = document.getElementById("pause-btn");
 const gameTimer = document.getElementById("timer");
 const moves = document.getElementById("moves");
+const params = new URLSearchParams(window.location.search);
+const difficulty = params.get("difficulty");
+const gridSize = (function (difficulty) {
+  switch (difficulty) {
+    case "easy-button":
+      return 4;
+    case "medium-button":
+      return 6;
+    case "hard-button":
+      return 8;
+    default:
+      console.log("Invalid difficulty level. Defaulting to easy.");
+      return 4; // Default to easy if no valid difficulty is provided
+  }
+})(difficulty);
 
 let emojis = [
   "💐",
@@ -61,6 +76,7 @@ function moveCounter() {
 
 let firstFlipCard = undefined;
 let secondFlipCard = undefined;
+let numberOfMatches = 0;
 //Handle the card flip logic
 function handleCardFlip(selectedCard) {
   // If a second card is flipped or the first card is clicked again
@@ -76,11 +92,25 @@ function handleCardFlip(selectedCard) {
     //flip the second card
     secondFlipCard = selectedCard;
     flip(secondFlipCard);
+    new Audio("../public/audio/flip.wav").play();
 
     // If the two cards match
     if (isMatching(firstFlipCard, secondFlipCard)) {
+      numberOfMatches++;
+      firstFlipCard.removeEventListener("click", handleCardFlip);
+      secondFlipCard.removeEventListener("click", handleCardFlip);
       firstFlipCard = undefined;
       secondFlipCard = undefined;
+      // Check if all cards are matched
+      if (numberOfMatches === (gridSize * gridSize) / 2) {
+        clearInterval(timerInterval);
+        setTimeout(() => {
+          new Audio("../public/audio/win.wav").play();
+          // Show the win message
+          document.writeln("winner winner!👏 chicken dinner!🐥");
+        }, 720);
+        numberOfMatches;
+      }
     } else {
       moveCounter();
       // Wait 1 second before flipping both cards back
@@ -97,6 +127,7 @@ function handleCardFlip(selectedCard) {
     // Flip the first card
     firstFlipCard = selectedCard;
     flip(firstFlipCard);
+    new Audio("../public/audio/flip.wav").play();
   }
 }
 
@@ -147,7 +178,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds,
+      remainingSeconds
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -165,29 +196,8 @@ function pauseTimer() {
 }
 
 function startGame() {
+  createCards(gridSize);
   startTimer();
-
-  // Get the difficulty level from the URL parameters
-  var params = new URLSearchParams(window.location.search);
-  var difficulty = params.get("difficulty");
-
-  switch (difficulty) {
-    case "easy-button":
-      // Set the grid to have 4 columns and Append 16 (4x4) cards
-      cards = createCards(4);
-      break;
-    case "medium-button":
-      // Set the grid to have 6 columns and Append 36 (6x6) cards
-      cards = createCards(6);
-      break;
-    case "hard-button":
-      // Set the grid to have 8 columns and Append 64 (8x8) cards
-      cards = createCards(8);
-      break;
-    default:
-      console.log("Unexpected difficulty level");
-  }
-
   // Add event listeners to all cards
   for (let card of gameGrid.getElementsByClassName("game-card")) {
     card.addEventListener("click", () => {
