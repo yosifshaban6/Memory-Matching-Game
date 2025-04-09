@@ -78,7 +78,8 @@ let firstFlipCard = undefined;
 let secondFlipCard = undefined;
 let numberOfMatches = 0;
 //Handle the card flip logic
-function handleCardFlip(selectedCard) {
+function handleCardFlip(event) {
+  selectedCard = event.currentTarget;
   // If a second card is flipped or the first card is clicked again
   if (paused || secondFlipCard || selectedCard === firstFlipCard) {
     //do nothing
@@ -200,9 +201,7 @@ function startGame() {
   startTimer();
   // Add event listeners to all cards
   for (let card of gameGrid.getElementsByClassName("game-card")) {
-    card.addEventListener("click", () => {
-      handleCardFlip(card);
-    });
+    card.addEventListener("click", handleCardFlip);
   }
 }
 
