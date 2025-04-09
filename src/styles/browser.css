@@ -1,8 +1,8 @@
 :root {
   font-size: calc(0.5em + 1vw); /* 20px */ 
   --main-font: 'Bagel Fat One', 'Black Remote', sans-serif;
-  --main-color: #b03633;
-  --secondary-color: #903332;
+  --main-color: #903332;
+  --secondary-color: #b03633;
   --main-pg-color: #f8f9fa;
   --secondary-pg-color: #fff;
 }

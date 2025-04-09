@@ -15,29 +15,30 @@
           <p>Choose Difficulty</p>
         </header>
         <main id="popup-content">
-          <p>Choose a difficulty level to start the game.</p>
-          <ul>
-            <li>
-              <p>Easy: 4x4 grid</p>
-            </li>
-            <li><p>Medium: 6x6 grid</p></li>
-            <li><p>Hard: 8x8 grid</p></li>
-          </ul>
+          <p>Choose a difficulty level to start the game</p>
         </main>
         <form id="difficulties-form" action="src/playground.html" method="GET">
           <input type="hidden" name="difficulty" />
 
           <button type="submit" class="difficulty" id="easy-button">
-            <p class="front">Easy</p>
+            <div class="front">
+              <p>Easy</p>
+              <p>4x4</p>
+            </div>
             <p class="back">🐤</p>
           </button>
           <button type="submit" class="difficulty" id="medium-button">
-            <p class="front">Medium</p>
-            <p></p>
+            <div class="front">
+              <p>Medium</p>
+              <p>6x6</p>
+            </div>
             <p class="back">🦉</p>
           </button>
           <button type="submit" class="difficulty" id="hard-button">
-            <p class="front">Hard</p>
+            <div class="front">
+              <p>Hard</p>
+              <p>8x8</p>
+            </div>
             <p class="back">🦅</p>
           </button>
         </form>
