@@ -28,3 +28,7 @@ body {
   background-color: var(--main-pg-color);
 }
 
+button {
+  font-family: var(--main-font);
+}
+
