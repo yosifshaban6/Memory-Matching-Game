@@ -3,28 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Memo</title>
     <link rel="stylesheet" href="src/styles/style.css" />
   </head>
   <body>
+    <!-- <section class="home"> -->
     <header class="game-header">
       <h1 class="game-title">Memory Matching Game</h1>
     </header>
     <main class="game-instructions">
       <section class="instructions">
-          <h2>How to play</h2>
-          <ul class="instructions-list">
-              <li>
-                  <p>Match the cards with identical images. Flip two cards at a time and try to find matching pairs.</p>               
-               </li>
-               <li>
-                  <p>The game ends when all pairs are matched!</p>
-              </li>
-          </ul>
-          
-          <button onclick="showPopup()" id="start-btn">Start Game</button>
+        <h2>How to Play?</h2>
+        <ul class="instructions-list">
+          <li>
+            Select a difficulty level: Easy, Medium, or Hard. The grid size will
+            adjust accordingly
+          </li>
+          <li>Click the "Start Game" button to begin</li>
+          <li>Flip two cards by clicking on them</li>
+          <li>
+            If the two flipped cards match, they will remain revealed. If not,
+            they will flip back after a short delay
+          </li>
+          <li>Keep flipping cards to find all matching pairs</li>
+          <li>
+            The timer will start automatically when the game begins. You can
+            pause and resume the timer using the "Pause" button
+          </li>
+          <li>The number of moves you make will be tracked and displayed</li>
+          <li>
+            Win the game by matching all pairs of cards!
+          </li>
+          <li>Click the "Reset" button to restart the game at any time</li>
+        </ul>
+        <p>Good luck and have fun!</p>
+        <button onclick="showPopup()" id="start-btn">Start Game</button>
       </section>
-  </main>
+    </main>
+    <!-- </section> -->
+
     <div id="popup-container">
       <div id="popup">
         <header>

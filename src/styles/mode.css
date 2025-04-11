@@ -3,18 +3,18 @@
   align-items: flex-start;
   gap: 0.5em;
   width: 100%;
-} 
+}
 
 #popup header p {
   width: 100%;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 0.5em;
 }
 
 #popup-exit-button {
   border: 0px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: transparent;
   color: var(--main-color);
   font-weight: bold;
@@ -28,6 +28,9 @@
   height: 100vh;
   position: fixed;
   top: 0;
+  backdrop-filter: blur(2px);
+  --webkit-backdrop-filter: blur(2px);
+  z-index: 1000;
 }
 
 #popup {
@@ -71,7 +74,7 @@
   border: none;
   transition: transform 0.7s ease, color 0.35s ease;
   transform-style: preserve-3d;
-  background-color: white;
+  background: linear-gradient(45deg, var(--main-color), var(--secondary-color));
   margin: 0.5em;
   height: 7em;
   width: 7em;
@@ -80,7 +83,7 @@
 
 .difficulty .front p {
   font-size: 0.7em;
-  color: var(--main-color);
+  color: white;
   font-family: var(--main-font);
   margin: 0;
 }
@@ -95,6 +98,7 @@
 }
 
 .back {
+  z-index: 1;
   transform: rotateY(-180deg);
   display: flex;
   justify-content: center;
@@ -102,7 +106,9 @@
 }
 
 .front {
+  z-index: 2;
   font-size: 30px;
+  transform: rotateY(0deg);
   font-family: var(--main-font);
 }
 

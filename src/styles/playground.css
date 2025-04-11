@@ -1,14 +1,12 @@
 /* Header */
 .game-header {
   font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
   padding: 0.2em 0;
 }
 
-.game-title {
+h1.game-title {
+  font-size: 2rem;
   background: linear-gradient(45deg, var(--main-color), var(--secondary-color));
   background-clip: text;
   -webkit-background-clip: text;
@@ -137,7 +135,13 @@ img {
   width: 100%;
 }
 
+.game-card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
 .game-card-back {
+  z-index: 1;
   font-size: 2em;
   font-size: 2em;
   transform: rotateY(180deg);
