@@ -22,8 +22,40 @@
       <ul class="game-controls">
         <li><button id="pause-btn">Pause</button></li>
         <li><button id="reset-btn">Reset</button></li>
+        <li><button id="scoreboard-btn">Score Board</button></li>
       </ul>
     </nav>
+
+    <section id="scoreboard">
+      <div id="scoreboard-overlay"></div>
+      <section class="user-scores">
+        <h2>Scores</h2>
+        <table class="scores-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="score-body"></tbody>
+        </table>
+      </section>
+    </section>
+
+    <section id="winner" class="hidden">
+      <div class="winner-overlay"></div>
+      <div class="winner-popup">
+        <div class="popup-content">
+          <h2>Congratulations!</h2>
+          <p>
+            You completed the game in <span id="final-time">00:00</span> with
+            <span id="final-moves">0</span> moves.
+          </p>
+          <button id="play-again-btn">Play Again</button>
+        </div>
+      </div>
+    </section>
 
     <main class="game-container">
       <section id="game-grid"></section>

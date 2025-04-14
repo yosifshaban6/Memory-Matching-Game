@@ -1,7 +1,11 @@
 const gameGrid = document.getElementById("game-grid");
 const resetButton = document.getElementById("reset-btn");
 const pauseButton = document.getElementById("pause-btn");
+const scoreboardButton = document.getElementById("scoreboard-btn");
+const winnerPopup = document.getElementById("winner");
+const playAgainBtn = document.getElementById("play-again-btn");
 const gameTimer = document.getElementById("timer");
+const highScore = document.getElementById("high-score");
 const moves = document.getElementById("moves");
 const params = new URLSearchParams(window.location.search);
 const difficulty = params.get("difficulty");
@@ -104,13 +108,19 @@ function handleCardFlip(event) {
       secondFlipCard = undefined;
       // Check if all cards are matched
       if (numberOfMatches === (gridSize * gridSize) / 2) {
+        // Stop the timer
         clearInterval(timerInterval);
+        paused = true;
+
+        // clearInterval(timerInterval);
         setTimeout(() => {
           new Audio("../public/audio/win.wav").play();
           // Show the win message
-          document.writeln("winner winner!👏 chicken dinner!🐥");
+          showWinnerPopup(gameTimer.innerText, moves.innerText);
+          // document.writeln("winner winner!👏 chicken dinner!🐥");
         }, 720);
-        numberOfMatches;
+        // numberOfMatches;
+        saveScore(gameTimer.innerText);
       }
     } else {
       moveCounter();
@@ -134,6 +144,8 @@ function handleCardFlip(event) {
 
 // Customizes the grid and appends cards given the grid size
 function createCards(gridSize) {
+  highScore.innerText =
+    JSON.parse(sessionStorage.getItem("scores") || "[]")[0] || "00:00";
   // define corresponding size of the card
   let cardSize = (function () {
     if (gridSize === 4) {
@@ -179,7 +191,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
+      remainingSeconds,
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -195,6 +207,8 @@ function pauseTimer() {
     startTimer();
   }
 }
+
+function pauseTimerAfterWin() {}
 
 function startGame() {
   createCards(gridSize);
@@ -219,6 +233,72 @@ function resetGame() {
   startGame();
 }
 
+function saveScore(time) {
+  let scores = JSON.parse(sessionStorage.getItem("scores")) || [];
+  scores.push(time);
+
+  scores.sort((a, b) => {
+    const timeA = parseInt(a.replace(":", ""));
+    const timeB = parseInt(b.replace(":", ""));
+
+    return timeA - timeB;
+  });
+
+  console.log(scores);
+
+  sessionStorage.setItem("scores", JSON.stringify(scores));
+}
+
+function displayScoreboard() {
+  const scorebody = document.getElementById("score-body");
+  const scores = [
+    { rank: 1, name: "Player1", time: "00:15" },
+    { rank: 2, name: "Player2", time: "00:30" },
+    { rank: 3, name: "Player3", time: "00:45" },
+  ];
+
+  scores.forEach((score) => {
+    console.log(score);
+    const scoreRecord = `
+      <tr>
+        <td>${score.rank}</td>
+        <td>${score.name}</td>
+        <td>${score.time}</td>
+      </tr>
+    `;
+
+    scorebody.innerHTML += scoreRecord;
+  });
+}
+
 resetButton.addEventListener("click", resetGame);
 pauseButton.addEventListener("click", pauseTimer);
+
+scoreboardButton.addEventListener("click", () => {
+  const scoreboardOverlay = document.getElementById("scoreboard-overlay");
+  const scoreboard = document.getElementById("scoreboard");
+
+  scoreboard.style.display = "block";
+  scoreboardOverlay.style.display = "block";
+  displayScoreboard();
+
+  scoreboardOverlay.addEventListener("click", () => {
+    scoreboard.style.display = "none";
+    scoreboardOverlay.style.display = "none";
+  });
+});
+
+// Function to show the winner popup
+function showWinnerPopup(finalTime, finalMoves) {
+  document.getElementById("final-time").textContent = finalTime;
+  document.getElementById("final-moves").textContent = finalMoves;
+  winnerPopup.classList.remove("hidden");
+}
+
+// Event listeners for buttons
+playAgainBtn.addEventListener("click", () => {
+  winnerPopup.classList.add("hidden");
+  resetGame();
+});
+
 startGame();

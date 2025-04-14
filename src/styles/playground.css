@@ -57,6 +57,7 @@ h1.game-title {
   border-radius: 0.3em;
   cursor: pointer;
   color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #pause-btn {
@@ -149,4 +150,127 @@ img {
   justify-content: center;
   align-items: center;
   flex-flow: column;
+}
+
+#scoreboard-btn {
+  color: var(--main-color);
+  background-color: var(--secondary-pg-color);
+}
+
+#scoreboard {
+  display: none;
+}
+
+/* Overlay for the blurred background */
+#scoreboard-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Popup content */
+.user-scores {
+  width: 25%;
+  max-height: 50vh;
+  overflow-y: auto;
+  font-size: 1rem;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondary-pg-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  z-index: 1001; /* Ensure the popup is above the overlay */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.user-scores h2 {
+  font-size: 1.5rem;
+  color: var(--main-color);
+}
+
+.user-scores .scores-table {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.user-scores .scores-table th {
+  font-size: 1.1rem;
+  color: var(--main-color);
+}
+
+.user-scores .scores-table td {
+  font-size: 0.9rem;
+}
+
+.user-scores .scores-table th,
+.user-scores .scores-table td {
+  padding: 0.2em 0.4em;
+  text-align: center;
+}
+
+.winner-popup {
+  font-size: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  text-align: center;
+  width: 100%;
+}
+
+.winner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+#winner.hidden {
+  display: none;
+}
+
+.popup-content h2 {
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.popup-content button {
+  font-size: 0.75rem;
+  margin: 0.5em;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.3em;
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background-color: var(--main-color);
 }
