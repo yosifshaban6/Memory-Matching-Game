@@ -14,7 +14,7 @@ const nameError = document.getElementById("name-error");
 const gridSize = (function (difficulty) {
   switch (difficulty) {
     case "easy-button":
-      return 2;
+      return 4;
     case "medium-button":
       return 6;
     case "hard-button":
