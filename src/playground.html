@@ -15,7 +15,7 @@
         <li><p class="game-stats-header">High Score</p></li>
         <li><p class="game-stats-header">Moves</p></li>
         <li><p class="game-stats-header">Timer</p></li>
-        <li><p id="high-score" class="game-stats-value">00:00</p></li>
+        <li><p id="high-score" class="game-stats-value">--:--</p></li>
         <li><p id="moves" class="game-stats-value">00</p></li>
         <li><p id="timer" class="game-stats-value">00:00</p></li>
       </ul>
@@ -33,9 +33,9 @@
         <table class="scores-table">
           <thead>
             <tr>
-              <th>Rank</th>
               <th>Player</th>
               <th>Time</th>
+              <th>Moves</th>
             </tr>
           </thead>
           <tbody id="score-body"></tbody>
@@ -47,12 +47,22 @@
       <div class="winner-overlay"></div>
       <div class="winner-popup">
         <div class="popup-content">
-          <h2>Congratulations!</h2>
+          <h2>Congratulations!👏</h2>
           <p>
             You completed the game in <span id="final-time">00:00</span> with
             <span id="final-moves">0</span> moves.
+
+            <br />
+            <input
+              id="player-name"
+              placeholder="Enter your name"
+              type="text"
+              maxlength="10"
+            />
+            <p id="name-error" >Letters only</p>
+
           </p>
-          <button id="play-again-btn">Play Again</button>
+          <button id="play-again-btn">Save & Play Again</button>
         </div>
       </div>
     </section>

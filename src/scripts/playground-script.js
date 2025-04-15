@@ -9,10 +9,12 @@ const highScore = document.getElementById("high-score");
 const moves = document.getElementById("moves");
 const params = new URLSearchParams(window.location.search);
 const difficulty = params.get("difficulty");
+const nameInput = document.getElementById("player-name");
+const nameError = document.getElementById("name-error");
 const gridSize = (function (difficulty) {
   switch (difficulty) {
     case "easy-button":
-      return 4;
+      return 2;
     case "medium-button":
       return 6;
     case "hard-button":
@@ -120,7 +122,7 @@ function handleCardFlip(event) {
           // document.writeln("winner winner!👏 chicken dinner!🐥");
         }, 720);
         // numberOfMatches;
-        saveScore(gameTimer.innerText);
+        saveHighScore(gameTimer.innerText);
       }
     } else {
       moveCounter();
@@ -143,9 +145,12 @@ function handleCardFlip(event) {
 }
 
 // Customizes the grid and appends cards given the grid size
+difficultyScoreKeyName = difficulty.split("-")[0] + "HighScore";
 function createCards(gridSize) {
   highScore.innerText =
-    JSON.parse(sessionStorage.getItem("scores") || "[]")[0] || "00:00";
+    JSON.parse(localStorage.getItem(difficultyScoreKeyName) || "null") ??
+    "--:--";
+
   // define corresponding size of the card
   let cardSize = (function () {
     if (gridSize === 4) {
@@ -191,7 +196,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds,
+      remainingSeconds
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -220,8 +225,9 @@ function startGame() {
 }
 
 function resetGame() {
-  let firstFlipCard = undefined;
-  let secondFlipCard = undefined;
+  firstFlipCard = undefined;
+  secondFlipCard = undefined;
+  numberOfMatches = 0;
   gameGrid.innerHTML = "";
   elapsedSeconds = 0;
   gameTimer.innerText = "00:00";
@@ -233,37 +239,42 @@ function resetGame() {
   startGame();
 }
 
-function saveScore(time) {
-  let scores = JSON.parse(sessionStorage.getItem("scores")) || [];
-  scores.push(time);
+function saveHighScore(time) {
+  if (JSON.parse(localStorage.getItem(difficultyScoreKeyName) === null)) {
+    score = Infinity;
+  } else {
+    score = JSON.parse(localStorage.getItem(difficultyScoreKeyName)).replace(
+      ":",
+      ""
+    );
+  }
 
-  scores.sort((a, b) => {
-    const timeA = parseInt(a.replace(":", ""));
-    const timeB = parseInt(b.replace(":", ""));
-
-    return timeA - timeB;
-  });
-
-  console.log(scores);
-
-  sessionStorage.setItem("scores", JSON.stringify(scores));
+  if (score > parseInt(time.replace(":", ""))) {
+    localStorage.setItem(difficultyScoreKeyName, JSON.stringify(time));
+  }
 }
 
 function displayScoreboard() {
+  const scoreCounter = parseInt(localStorage.getItem("scoreCounter"), 10);
+  const scores = [];
+
+  for (let i = 0; i < scoreCounter; i++) {
+    const item = JSON.parse(localStorage.getItem(`playerScore_${i}`));
+
+    if (item.difficulty == difficulty) {
+      scores.push(item);
+    }
+  }
+  scores.sort((a, b) => a.time.replace(":", "") - b.time.replace(":", ""));
   const scorebody = document.getElementById("score-body");
-  const scores = [
-    { rank: 1, name: "Player1", time: "00:15" },
-    { rank: 2, name: "Player2", time: "00:30" },
-    { rank: 3, name: "Player3", time: "00:45" },
-  ];
+  scorebody.innerHTML = "";
 
   scores.forEach((score) => {
-    console.log(score);
-    const scoreRecord = `
+    let scoreRecord = `
       <tr>
-        <td>${score.rank}</td>
         <td>${score.name}</td>
         <td>${score.time}</td>
+        <td>${score.moves}</td>
       </tr>
     `;
 
@@ -292,13 +303,38 @@ scoreboardButton.addEventListener("click", () => {
 function showWinnerPopup(finalTime, finalMoves) {
   document.getElementById("final-time").textContent = finalTime;
   document.getElementById("final-moves").textContent = finalMoves;
+
   winnerPopup.classList.remove("hidden");
+}
+
+if (localStorage.getItem("scoreCounter") === null) {
+  localStorage.setItem("scoreCounter", [0]);
 }
 
 // Event listeners for buttons
 playAgainBtn.addEventListener("click", () => {
-  winnerPopup.classList.add("hidden");
-  resetGame();
+  if (!/^[A-Za-z]+$/.test(nameInput.value)) {
+    nameError.style.display = "block";
+  } else {
+    nameError.style.display = "none";
+
+    let count = parseInt(localStorage.getItem("scoreCounter"));
+    localStorage.setItem("scoreCounter", count + 1);
+    key = `playerScore_${count}`;
+
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        name: nameInput.value,
+        time: gameTimer.innerText,
+        moves: moves.innerText,
+        difficulty: difficulty,
+      })
+    );
+
+    winnerPopup.classList.add("hidden");
+    resetGame();
+  }
 });
 
 startGame();
