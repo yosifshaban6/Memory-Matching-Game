@@ -34,23 +34,20 @@ The **Memory Matching Game** is a fun and interactive game where players test th
 
 ## Deployed Version
 
-You can play the game online at the following link: [Memory Matching Game](https://your-deployed-link.com)
+You can play the game online at the following link: [Memory Matching Game](https://yosifshaban6.github.io/Memory-Matching-Game/)
 
 ## Technologies Used
 
 ### HTML
-
 - Used for structuring the game interface and ensuring semantic markup for better accessibility.
 
 ### CSS
-
 - **Clear Structure**: The CSS is modularized using the `@import` rule to separate styles into smaller, reusable files.
 - **CSS Variables**: Utilized for maintaining consistent theming and easy updates to colors, fonts, and spacing.
 - **Relative Length Units**: Used `em`, `rem`, and `%` for responsive design and better scalability across different screen sizes.
 - **Animations**: Smooth transitions and animations for card flips and popups enhance the user experience.
 
 ### JavaScript
-
 - **Game Logic**: Handles card flipping, matching logic, and game state management.
 - **Session Storage**: Used to temporarily store game data (e.g., current moves, elapsed time) during a session, ensuring data persistence even if the page is refreshed.
 - **Local Storage**: Stores high scores and player statistics for long-term access.
