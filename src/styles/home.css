@@ -1,5 +1,7 @@
-.home .game-header {
+.game-header {
   text-align: left;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .game-instructions {
@@ -9,7 +11,7 @@
 }
 
 .game-instructions .instructions {
-  padding: 2em;
+  margin-top: 1.5em;
   max-width: 50%;
 }
 
