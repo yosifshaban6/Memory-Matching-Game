@@ -159,6 +159,28 @@ img {
 
 #scoreboard {
   display: none;
+
+  .scoreboard-header {
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    color: var(--main-color);
+
+    button {
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      color: var(--main-color);
+      background: none;
+    }
+
+    h2 {
+      width: 100%;
+      font-size: 1.5rem;
+      color: var(--main-color);
+      text-align: center;
+    }
+  }
 }
 
 /* Overlay for the blurred background */
@@ -175,9 +197,10 @@ img {
 
 /* Popup content */
 .user-scores {
-  width: 25%;
-  max-height: 50vh;
+  width: 20rem;
+  height: 45vh;
   overflow-y: auto;
+  scrollbar-width: none;
   font-size: 1rem;
   display: flex;
   position: fixed;
@@ -185,14 +208,17 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--secondary-pg-color);
-  padding: 1em;
+  padding: 0.2em 1em 1em;
   border-radius: 0.5em;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 0.5em;
   z-index: 1001; /* Ensure the popup is above the overlay */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.user-scores::-webkit-scrollbar {
+  display: none;
 }
 
 .user-scores h2 {
@@ -201,7 +227,7 @@ img {
 }
 
 .user-scores .scores-table {
-  width: 100%;
+  width: 85%;
   font-size: 1rem;
 }
 

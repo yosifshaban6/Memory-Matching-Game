@@ -196,7 +196,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
+      remainingSeconds,
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -245,7 +245,7 @@ function saveHighScore(time) {
   } else {
     score = JSON.parse(localStorage.getItem(difficultyScoreKeyName)).replace(
       ":",
-      ""
+      "",
     );
   }
 
@@ -288,12 +288,18 @@ pauseButton.addEventListener("click", pauseTimer);
 scoreboardButton.addEventListener("click", () => {
   const scoreboardOverlay = document.getElementById("scoreboard-overlay");
   const scoreboard = document.getElementById("scoreboard");
+  const scoreboardCloseButton = document.getElementById("scoreboard-close-btn");
 
   scoreboard.style.display = "block";
   scoreboardOverlay.style.display = "block";
   displayScoreboard();
 
   scoreboardOverlay.addEventListener("click", () => {
+    scoreboard.style.display = "none";
+    scoreboardOverlay.style.display = "none";
+  });
+
+  scoreboardCloseButton.addEventListener("click", () => {
     scoreboard.style.display = "none";
     scoreboardOverlay.style.display = "none";
   });
@@ -329,7 +335,7 @@ playAgainBtn.addEventListener("click", () => {
         time: gameTimer.innerText,
         moves: moves.innerText,
         difficulty: difficulty,
-      })
+      }),
     );
 
     winnerPopup.classList.add("hidden");

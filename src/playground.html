@@ -29,7 +29,10 @@
     <section id="scoreboard">
       <div id="scoreboard-overlay"></div>
       <section class="user-scores">
-        <h2>Scores</h2>
+        <section class="scoreboard-header">
+          <button id="scoreboard-close-btn">X</button>
+          <h2>Scores</h2>
+        </section>
         <table class="scores-table">
           <thead>
             <tr>
@@ -47,7 +50,7 @@
       <div class="winner-overlay"></div>
       <div class="winner-popup">
         <div class="popup-content">
-          <h2>Congratulations!👏</h2>
+          <h2>Congratulations👏</h2>
           <p>
             You completed the game in <span id="final-time">00:00</span> with
             <span id="final-moves">0</span> moves.
