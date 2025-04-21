@@ -354,3 +354,8 @@ img {
   color: var(--main-color);
   display: none;
 }
+
+#new-high-score {
+  color: var(--main-color);
+  display: none;
+}

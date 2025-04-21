@@ -9,8 +9,18 @@ const highScore = document.getElementById("high-score");
 const moves = document.getElementById("moves");
 const params = new URLSearchParams(window.location.search);
 const difficulty = params.get("difficulty");
+const difficultyHighScoreKey = difficulty.split("-")[0] + " highscore";
+const difficultyScoresKey = difficulty.split("-")[0] + " scores";
 const nameInput = document.getElementById("player-name");
 const nameError = document.getElementById("name-error");
+const newHighScore = document.getElementById("new-high-score");
+const scorebody = document.getElementById("score-body");
+const winAudio = new Audio("../public/audio/win.mp3");
+const newHighScoreAudio = new Audio("../public/audio/new_high_score.mp3");
+const matchedAudio = new Audio("../public/audio/matched.wav");
+matchedAudio.volume = 0.55;
+const flipAudio = new Audio("../public/audio/flip.wav");
+flipAudio.volume = 0.55;
 const gridSize = (function (difficulty) {
   switch (difficulty) {
     case "easy-button":
@@ -92,14 +102,11 @@ function handleCardFlip(event) {
   }
   // If a first card is flipped
   else if (firstFlipCard) {
-    // If same card is clicked again
-    if (firstFlipCard === selectedCard) {
-      //do nothing
-    }
+    moveCounter();
     //flip the second card
     secondFlipCard = selectedCard;
     flip(secondFlipCard);
-    new Audio("../public/audio/flip.wav").play();
+    flipAudio.play();
 
     // If the two cards match
     if (isMatching(firstFlipCard, secondFlipCard)) {
@@ -114,18 +121,18 @@ function handleCardFlip(event) {
         clearInterval(timerInterval);
         paused = true;
 
-        // clearInterval(timerInterval);
         setTimeout(() => {
-          new Audio("../public/audio/win.wav").play();
           // Show the win message
           showWinnerPopup(gameTimer.innerText, moves.innerText);
-          // document.writeln("winner winner!👏 chicken dinner!🐥");
-        }, 720);
+        }, 450);
         // numberOfMatches;
         saveHighScore(gameTimer.innerText);
+      } else {
+        setTimeout(() => {
+          new Audio(matchedAudio.src).play(); //different audio object allow simultaneous audios
+        }, 450);
       }
     } else {
-      moveCounter();
       // Wait 1 second before flipping both cards back
       setTimeout(() => {
         flipBack(firstFlipCard);
@@ -140,15 +147,14 @@ function handleCardFlip(event) {
     // Flip the first card
     firstFlipCard = selectedCard;
     flip(firstFlipCard);
-    new Audio("../public/audio/flip.wav").play();
+    flipAudio.play();
   }
 }
 
 // Customizes the grid and appends cards given the grid size
-difficultyScoreKeyName = difficulty.split("-")[0] + "HighScore";
 function createCards(gridSize) {
   highScore.innerText =
-    JSON.parse(localStorage.getItem(difficultyScoreKeyName) || "null") ??
+    JSON.parse(localStorage.getItem(difficultyHighScoreKey) || "null") ??
     "--:--";
 
   // define corresponding size of the card
@@ -196,7 +202,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds,
+      remainingSeconds
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -240,36 +246,43 @@ function resetGame() {
 }
 
 function saveHighScore(time) {
-  if (JSON.parse(localStorage.getItem(difficultyScoreKeyName) === null)) {
-    score = Infinity;
-  } else {
-    score = JSON.parse(localStorage.getItem(difficultyScoreKeyName)).replace(
-      ":",
-      "",
-    );
-  }
+  leastTimeScore = localStorage.getItem(difficultyHighScoreKey);
+  if (leastTimeScore !== null) {
+    leastTimeScore = JSON.parse(leastTimeScore).replace(":", "");
+    if (leastTimeScore > parseInt(time.replace(":", ""))) {
+      newHighScore.style.display = "block";
+      localStorage.setItem(difficultyHighScoreKey, JSON.stringify(time));
+      setTimeout(() => {
+        newHighScoreAudio.play();
+      }, 450);
+    } else {
+      setTimeout(() => {
+        winAudio.play();
+      }, 450);
 
-  if (score > parseInt(time.replace(":", ""))) {
-    localStorage.setItem(difficultyScoreKeyName, JSON.stringify(time));
+      newHighScore.style.display = "none";
+    }
+  } else {
+    localStorage.setItem(difficultyHighScoreKey, JSON.stringify(time));
+    newHighScore.style.display = "block";
+
+    setTimeout(() => {
+      newHighScoreAudio.play();
+    }, 450);
   }
 }
 
 function displayScoreboard() {
-  const scoreCounter = parseInt(localStorage.getItem("scoreCounter"), 10);
-  const scores = [];
+  const scores = JSON.parse(localStorage.getItem(difficultyScoresKey));
 
-  for (let i = 0; i < scoreCounter; i++) {
-    const item = JSON.parse(localStorage.getItem(`playerScore_${i}`));
+  const scoresToShow = scores.filter((score) => score.difficulty == difficulty);
 
-    if (item.difficulty == difficulty) {
-      scores.push(item);
-    }
-  }
-  scores.sort((a, b) => a.time.replace(":", "") - b.time.replace(":", ""));
-  const scorebody = document.getElementById("score-body");
+  scoresToShow.sort(
+    (a, b) => a.time.replace(":", "") - b.time.replace(":", "")
+  );
   scorebody.innerHTML = "";
 
-  scores.forEach((score) => {
+  scoresToShow.forEach((score) => {
     let scoreRecord = `
       <tr>
         <td>${score.name}</td>
@@ -313,10 +326,6 @@ function showWinnerPopup(finalTime, finalMoves) {
   winnerPopup.classList.remove("hidden");
 }
 
-if (localStorage.getItem("scoreCounter") === null) {
-  localStorage.setItem("scoreCounter", [0]);
-}
-
 // Event listeners for buttons
 playAgainBtn.addEventListener("click", () => {
   if (!/^[A-Za-z]+$/.test(nameInput.value)) {
@@ -324,19 +333,17 @@ playAgainBtn.addEventListener("click", () => {
   } else {
     nameError.style.display = "none";
 
-    let count = parseInt(localStorage.getItem("scoreCounter"));
-    localStorage.setItem("scoreCounter", count + 1);
-    key = `playerScore_${count}`;
+    let difficultyScores =
+      JSON.parse(localStorage.getItem(difficultyScoresKey)) || [];
 
-    localStorage.setItem(
-      key,
-      JSON.stringify({
-        name: nameInput.value,
-        time: gameTimer.innerText,
-        moves: moves.innerText,
-        difficulty: difficulty,
-      }),
-    );
+    difficultyScores.push({
+      name: nameInput.value,
+      time: gameTimer.innerText,
+      moves: moves.innerText,
+      difficulty: difficulty,
+    });
+
+    localStorage.setItem(difficultyScoresKey, JSON.stringify(difficultyScores));
 
     winnerPopup.classList.add("hidden");
     resetGame();

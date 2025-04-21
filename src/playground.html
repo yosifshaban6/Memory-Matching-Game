@@ -58,17 +58,23 @@
       <div class="winner-overlay"></div>
       <div class="winner-popup">
         <div class="popup-content">
-          <h2>Congratulations👏</h2>
+          <h1 id="new-high-score">New High Score 🥇</h1>
+          <h2>Congratulations!👏</h2>
           <p>
             You completed the game in <span id="final-time">00:00</span> with
             <span id="final-moves">0</span> moves.
             <br />
+            <div>
+              
             <input
               id="player-name"
               placeholder="Enter your name"
               type="text"
               maxlength="10"
             />
+            <p id="name-error" >Letters only</p>
+            </div>
+
           </p>
           <p id="name-error">Letters only</p>
           <button id="play-again-btn">Save & Play Again</button>
