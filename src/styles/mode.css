@@ -92,8 +92,12 @@
   font-size: 2em;
 }
 
-.difficulty:hover {
+#button-container:hover .difficulty {
   transform: rotateY(180deg);
+  cursor: pointer;
+}
+
+#button-container:hover {
   cursor: pointer;
 }
 
