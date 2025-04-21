@@ -1,3 +1,7 @@
+<div align='center'>
+   <img alt='Memory-Matching-Game' src='https://github.com/user-attachments/assets/b924f419-2926-44ef-b0d9-8caa5f367f28' width='720'/>
+</div>
+
 # Memory Matching Game
 
 The **Memory Matching Game** is a fun and interactive game where players test their memory by matching pairs of cards. The game offers three difficulty levels: Easy, Medium, and Hard, with varying grid sizes to challenge players of all skill levels.
