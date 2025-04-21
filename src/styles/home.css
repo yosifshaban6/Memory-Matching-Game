@@ -1,49 +1,79 @@
 .game-header {
-  text-align: left;
   width: 50%;
   margin: 0 auto;
 }
 
 .game-instructions {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .game-instructions .instructions {
-  margin-top: 1.5em;
-  max-width: 50%;
+  margin-top: 0.5em;
+  width: 40%;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-pg-color);
+  padding: 1em;
+  border-radius: 0.5em;
 }
 
 .instructions h2 {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   color: var(--secondary-color);
 }
 
-.instructions .instructions-list {
-  margin: 0.5em 0;
-  padding-left: 0.5em;
-  text-align: left;
-  margin-left: 1em;
+.instructions {
+  margin: 1.2em 0 0.6em;
+  /* box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1); */
+  border-radius: 0.3em;
 }
 
 .instructions .instructions-list li {
-  font-size: 1rem;
-  list-style: outside;
+  list-style-position: inside;
+  list-style-type: none; /* Remove default bullet */
+  padding: 0.3em 3em;
+  /* border-radius: 0.3em; */
+  font-size: 0.7rem;
+  background-color: var(--main-pg-color);
+  /* box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1); */
+  /* border-bottom: 0.5px solid var(--main-color); */
+  margin: 0.8em;
+  position: relative;
 }
 
-.instructions p {
-  font-size: 1.05rem;
+.instructions .instructions-list li::before {
+  content: "";
+  background-image: url("../../public/images/check-mark.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 28px; /* Adjust size as needed */
+  height: 28px; /* Adjust size as needed */
+  color: var(--secondary-color);
+  position: absolute;
+  left: 15px;
 }
 
-.instructions button {
-  font-size: 0.85rem;
+.instructions + p {
+  font-size: 0.9rem;
+}
+
+.game-instructions button {
+  font-size: 0.8rem;
   margin-top: 1em;
   padding: 0.5em 1em;
   border: none;
   border-radius: 0.3em;
   cursor: pointer;
   color: white;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
 }
 
 #start-btn {
