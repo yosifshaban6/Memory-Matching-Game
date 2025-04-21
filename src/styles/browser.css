@@ -3,6 +3,7 @@
   --main-font: 'Bagel Fat One', 'Black Remote', sans-serif;
   --main-color: #903332;
   --secondary-color: #b03633;
+  --white-color: #fff;
   --main-pg-color: #f8f9fa;
   --secondary-pg-color: #fff;
 }
@@ -31,4 +32,3 @@ body {
 button {
   font-family: var(--main-font);
 }
-
