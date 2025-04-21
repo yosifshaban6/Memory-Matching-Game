@@ -1,19 +1,50 @@
 /* Header */
 .game-header {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
   text-align: center;
-  padding: 0.2em 0;
-}
 
-h1.game-title {
-  font-size: 2rem;
-  background: linear-gradient(45deg, var(--main-color), var(--secondary-color));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  .back-icon {
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    background: linear-gradient(
+      45deg,
+      var(--main-color),
+      var(--secondary-color)
+    );
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+
+    a {
+      color: var(--white-color);
+      text-decoration: none;
+    }
+  }
+  .game-title {
+    flex: 1;
+    font-size: 2rem;
+    background: linear-gradient(
+      45deg,
+      var(--main-color),
+      var(--secondary-color)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 /* Game Nav Styles */
+.wrapper {
+  margin-left: 1.2em;
+}
+
 .game-board {
   font-size: 0.9rem;
   margin-top: 0.5em;
