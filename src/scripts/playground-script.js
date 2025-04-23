@@ -13,10 +13,10 @@ const difficultyHighScoreKey = difficulty.split("-")[0] + " highscore";
 const difficultyScoresKey = difficulty.split("-")[0] + " scores";
 const nameInput = document.getElementById("player-name");
 const nameError = document.getElementById("name-error");
-const newHighScore = document.getElementById("new-high-score");
+// const newHighScore = document.getElementById("new-high-score");
 const scorebody = document.getElementById("score-body");
 const winAudio = new Audio("../public/audio/win.mp3");
-const newHighScoreAudio = new Audio("../public/audio/new_high_score.mp3");
+// const newHighScoreAudio = new Audio("../public/audio/new_high_score.mp3");
 const matchedAudio = new Audio("../public/audio/matched.wav");
 matchedAudio.volume = 0.55;
 const flipAudio = new Audio("../public/audio/flip.wav");
@@ -250,25 +250,25 @@ function saveHighScore(time) {
   if (leastTimeScore !== null) {
     leastTimeScore = JSON.parse(leastTimeScore).replace(":", "");
     if (leastTimeScore > parseInt(time.replace(":", ""))) {
-      newHighScore.style.display = "block";
+      // newHighScore.style.display = "block";
       localStorage.setItem(difficultyHighScoreKey, JSON.stringify(time));
-      setTimeout(() => {
-        newHighScoreAudio.play();
-      }, 450);
+      // setTimeout(() => {
+      //   newHighScoreAudio.play();
+      // }, 450);
     } else {
       setTimeout(() => {
         winAudio.play();
       }, 450);
 
-      newHighScore.style.display = "none";
+      // newHighScore.style.display = "none";
     }
   } else {
     localStorage.setItem(difficultyHighScoreKey, JSON.stringify(time));
-    newHighScore.style.display = "block";
+    // newHighScore.style.display = "block";
 
-    setTimeout(() => {
-      newHighScoreAudio.play();
-    }, 450);
+    // setTimeout(() => {
+      // newHighScoreAudio.play();
+    // }, 450);
   }
 }
 
@@ -281,6 +281,15 @@ function displayScoreboard() {
     (a, b) => a.time.replace(":", "") - b.time.replace(":", ""),
   );
   scorebody.innerHTML = "";
+
+  if (scoresToShow.length === 0) {
+    scorebody.innerHTML = `
+      <tr>
+        <td colspan="3">No scores available</td>
+      </tr>
+    `;
+    return;
+  }
 
   scoresToShow.forEach((score) => {
     let scoreRecord = `
