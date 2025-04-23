@@ -229,7 +229,7 @@ img {
 /* Popup content */
 .user-scores {
   width: 20rem;
-  max-height: 45vh; /* Use max-height to ensure the scrollbar is inside */
+ height: 45vh; 
   overflow-y: auto;
   font-size: 1rem;
   display: flex;
