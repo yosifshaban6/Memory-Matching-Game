@@ -202,7 +202,7 @@ function startTimer() {
     var remainingSeconds = Math.floor(elapsedSeconds % 60);
 
     gameTimer.innerText = `${String(minutes).padStart(2, "0")}:${String(
-      remainingSeconds
+      remainingSeconds,
     ).padStart(2, "0")}`;
   }, 1000);
 }
@@ -273,12 +273,12 @@ function saveHighScore(time) {
 }
 
 function displayScoreboard() {
-  const scores = JSON.parse(localStorage.getItem(difficultyScoresKey));
+  const scores = JSON.parse(localStorage.getItem(difficultyScoresKey)) || [];
 
   const scoresToShow = scores.filter((score) => score.difficulty == difficulty);
 
   scoresToShow.sort(
-    (a, b) => a.time.replace(":", "") - b.time.replace(":", "")
+    (a, b) => a.time.replace(":", "") - b.time.replace(":", ""),
   );
   scorebody.innerHTML = "";
 
