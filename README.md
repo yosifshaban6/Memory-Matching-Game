@@ -1,6 +1,7 @@
 <div align='center'>
-   <img alt='Memory-Matching-Game' src='https://github.com/user-attachments/assets/b924f419-2926-44ef-b0d9-8caa5f367f28' width='720'/>
+   <img alt='Memory-Matching-Game' src='https://github.com/user-attachments/assets/9940df26-b7a0-40eb-a504-aed77667636f' width='720'/>
 </div>
+
 
 # Memory Matching Game
 
